@@ -1,0 +1,46 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<feed xmlns="http://www.w3.org/2005/Atom">
+  <title>thunk juice</title>
+  <subtitle>funrolling the rainbow</subtitle>
+  <id>http://blog.url.com/</id>
+  <link href="http://blog.url.com/"/>
+  <link href="http://blog.url.com/feed.xml" rel="self"/>
+  <updated>2017-05-25T17:00:00-07:00</updated>
+  <author>
+    <name>dmr</name>
+  </author>
+  <entry>
+    <title>marshmallow-select: alpha junkware to crash your servers</title>
+    <link rel="alternate" href="http://blog.url.com/marshmallow-select.html"/>
+    <id>http://blog.url.com/marshmallow-select.html</id>
+    <published>2017-05-25T17:00:00-07:00</published>
+    <updated>2017-05-27T11:31:57-07:00</updated>
+    <author>
+      <name>Article Author</name>
+    </author>
+    <summary type="html">&lt;p&gt;This is to announce the publication of my package 
+&lt;a href="https://github.com/Distribute-Inc/marshmallow-select"&gt;marshmallow-select&lt;/a&gt;,
+currently part of the &lt;a href="https://distribute.com"&gt;Distribute&lt;/a&gt; corporate
+repo, but soon to be moved
+to &lt;a href="https://github.com/marshmallow-code/"&gt;marshmallow-code&lt;/a&gt;.&lt;/p&gt;
+
+&lt;p&gt;As the &lt;a href="http://docs.sqlalchemy.org/en/latest/"&gt;sqlalchemy docs&lt;/a&gt;
+cogently point out, the biggest problem people usually have with...&lt;/p&gt;</summary>
+  </entry>
+  <entry>
+    <title>A Codeblogger's Apology</title>
+    <link rel="alternate" href="http://blog.url.com/codebloggers-apology.html"/>
+    <id>http://blog.url.com/codebloggers-apology.html</id>
+    <published>2017-05-23T17:00:00-07:00</published>
+    <updated>2017-05-27T13:08:12-07:00</updated>
+    <author>
+      <name>Article Author</name>
+    </author>
+    <summary type="html">&lt;p&gt;After working in the industry for years and reading lots of
+programming blogs, I finally decided to start my own. A decent respect
+for the opinions of mankind demands I say why. Also, I wanted to start
+with more than 1 post.&lt;/p&gt;
+
+&lt;p&gt;For one thing, I finally...&lt;/p&gt;</summary>
+  </entry>
+</feed>

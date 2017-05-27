@@ -12,11 +12,7 @@ const subtitle_options = [
     'free as in willy',
     'build the -Wall',
     'woke on lan',
-];
-
-const alternatives = [
     'cat /dev/random | xxd > blogpost.html',
-    "(cons 8======D '())",
 ];
 
 document.addEventListener("turbolinks:load", function() {

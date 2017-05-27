@@ -62,6 +62,7 @@ Backtrace:
 /home/dmr/.rvm/gems/ruby-2.3.1/gems/rack-2.0.3/lib/rack/urlmap.rb:68:in `block in call'
 /home/dmr/.rvm/gems/ruby-2.3.1/gems/rack-2.0.3/lib/rack/urlmap.rb:53:in `each'
 /home/dmr/.rvm/gems/ruby-2.3.1/gems/rack-2.0.3/lib/rack/urlmap.rb:53:in `call'
+/home/dmr/.rvm/gems/ruby-2.3.1/gems/middleman-core-4.2.1/lib/middleman-core/extensions/minify_css.rb:63:in `call'
 /home/dmr/.rvm/gems/ruby-2.3.1/gems/rack-2.0.3/lib/rack/head.rb:12:in `call'
 /home/dmr/.rvm/gems/ruby-2.3.1/gems/rack-2.0.3/lib/rack/lint.rb:49:in `_call'
 /home/dmr/.rvm/gems/ruby-2.3.1/gems/rack-2.0.3/lib/rack/lint.rb:37:in `call'

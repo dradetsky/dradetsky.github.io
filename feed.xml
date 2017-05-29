@@ -14,18 +14,18 @@
     <link rel="alternate" href="https://dradetsky.github.io/marshmallow-select.html"/>
     <id>https://dradetsky.github.io/marshmallow-select.html</id>
     <published>2017-05-25T17:00:00-07:00</published>
-    <updated>2017-05-27T11:31:57-07:00</updated>
+    <updated>2017-05-28T18:31:51-07:00</updated>
     <author>
       <name>dmr</name>
     </author>
     <summary type="html">&lt;p&gt;This is to announce the publication of my package 
-&lt;a href="https://github.com/Distribute-Inc/marshmallow-select"&gt;marshmallow-select&lt;/a&gt;,
-currently part of the &lt;a href="https://distribute.com"&gt;Distribute&lt;/a&gt; corporate
-repo, but soon to be moved
-to &lt;a href="https://github.com/marshmallow-code/"&gt;marshmallow-code&lt;/a&gt;.&lt;/p&gt;
+&lt;a href="https://github.com/marshmallow-code/marshmallow-select"&gt;marshmallow-select&lt;/a&gt;,
+formerly part of the &lt;a href="https://distribute.com"&gt;Distribute&lt;/a&gt; corporate
+repo, but since moved to
+&lt;a href="https://github.com/marshmallow-code/"&gt;marshmallow-code&lt;/a&gt;.&lt;/p&gt;
 
 &lt;p&gt;As the &lt;a href="http://docs.sqlalchemy.org/en/latest/"&gt;sqlalchemy docs&lt;/a&gt;
-cogently point out, the biggest problem people usually have with...&lt;/p&gt;</summary>
+cogently point out, the biggest problem people usually have with ORM...&lt;/p&gt;</summary>
   </entry>
   <entry>
     <title>A Codeblogger's Apology</title>

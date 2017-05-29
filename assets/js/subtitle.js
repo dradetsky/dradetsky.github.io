@@ -11,11 +11,19 @@ const subtitle_options = [
     'putting the "meth" in "programming methodology"',
     'free as in willy',
     'build the -Wall',
-    'woke on lan',
+    '#woke on lan',
+];
+
+const alt_options = [
     'cat /dev/random | xxd > blogpost.html',
+    // 'cat blogpost.html > /dev/null',
+    'pokemon goroutines',
+    'git -r done',
+    'downward-funarg syndrome',
 ];
 
 document.addEventListener("turbolinks:load", function() {
     var new_subtitle = _.sample(subtitle_options);
+    // var new_subtitle = _.sample(alt_options);
     $('#subtitle').text(new_subtitle);
 });

@@ -5,10 +5,32 @@
   <id>https://dradetsky.github.io</id>
   <link href="https://dradetsky.github.io"/>
   <link href="https://dradetsky.github.io/feed.xml" rel="self"/>
-  <updated>2017-05-25T17:00:00-07:00</updated>
+  <updated>2017-05-29T17:00:00-07:00</updated>
   <author>
     <name>dmr</name>
   </author>
+  <entry>
+    <title>Moving To Arch Linux: Humanity is Overrated</title>
+    <link rel="alternate" href="https://dradetsky.github.io/moving-to-arch.html"/>
+    <id>https://dradetsky.github.io/moving-to-arch.html</id>
+    <published>2017-05-29T17:00:00-07:00</published>
+    <updated>2017-05-29T23:34:33-07:00</updated>
+    <author>
+      <name>dmr</name>
+    </author>
+    <summary type="html">&lt;blockquote&gt;
+&lt;p&gt;"Ubuntu" comes from an ancient African word meaning: "I can't
+configure Debian."&lt;/p&gt;
+
+&lt;p&gt;-- &lt;cite&gt;Anonymous, 4chan /prog/&lt;/cite&gt;&lt;/p&gt;
+&lt;/blockquote&gt;
+
+&lt;p&gt;&lt;img src="moving-to-arch/arch.png" alt="Arch Logo"&gt;&lt;/p&gt;
+
+&lt;p&gt;It's been a long time coming, but I've finally decided to move
+to &lt;a href="https://www.archlinux.org/"&gt;Arch Linux&lt;/a&gt;, after using Ubuntu for
+basically my whole professional life...&lt;/p&gt;</summary>
+  </entry>
   <entry>
     <title>marshmallow-select: alpha junkware to crash your servers</title>
     <link rel="alternate" href="https://dradetsky.github.io/marshmallow-select.html"/>

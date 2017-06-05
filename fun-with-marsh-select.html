@@ -51,27 +51,21 @@
 unfortunately short on examples of what could be done with it. Let&#39;s fix that.</p>
 
 <p>Consider a server application with a minimal user model (ommitting pks &amp; relationships)</p>
-
-<pre><code class="python">class User(Base):
+<pre class="high"><code class="python">class User(Base):
     first_name = Column(String(100))
     last_name = Column(String(100))
     email = Column(String(100))
 </code></pre>
-
 <p>such that users have zero or more images associated with their account</p>
-
-<pre><code class="python">class Image(Base):
+<pre class="high"><code class="python">class Image(Base):
     url = Column(String(100))
-    user_id = Column(Integer, ForeignKey(&#39;user.id&#39;))
+    user_id = Column(Integer, ForeignKey('user.id'))
 </code></pre>
-
 <p>and can <em>like</em> other user&#39;s images<sup id="fnref1"><a href="#fn1" rel="footnote">1</a></sup></p>
-
-<pre><code class="python">class Like(Base):
-    user_id = Column(Integer, ForeignKey(&#39;user.id&#39;))
-    image_id = Column(Integer, ForeignKey(&#39;image.id&#39;))
+<pre class="high"><code class="python">class Like(Base):
+    user_id = Column(Integer, ForeignKey('user.id'))
+    image_id = Column(Integer, ForeignKey('image.id'))
 </code></pre>
-
 <p>We&#39;ll call the resulting app <em>Shitbook</em>. </p>
 
 <p>Now consider what sorts of subsets of these objects you might want to
@@ -85,22 +79,20 @@ direct fields of our models, and
 from plain old
 <a href="http://marshmallow.readthedocs.io/en/latest/">marshmallow</a>
 to define a set of &quot;Complete&quot; schemas.<sup id="fnref2"><a href="#fn2" rel="footnote">2</a></sup></p>
-
-<pre><code class="python">class UserSchema(ShallowUserSchema):
-    images = List(Nested(&#39;ImageSchema&#39;))
-    likes = List(Nested(&#39;LikeSchema&#39;))
+<pre class="high"><code class="python">class UserSchema(ShallowUserSchema):
+    images = List(Nested('ImageSchema'))
+    likes = List(Nested('LikeSchema'))
 
 
 class ImageSchema(ShallowImageSchema):
-    user = Nested(&#39;UserSchema&#39;)
-    users_who_like = List(Nested(&#39;UserSchema&#39;))
+    user = Nested('UserSchema')
+    users_who_like = List(Nested('UserSchema'))
 
 
 class LikeSchema(Schema):
-    user = Nested(&#39;UserSchema&#39;)
-    image = Nested(&#39;ImageSchema&#39;)
+    user = Nested('UserSchema')
+    image = Nested('ImageSchema')
 </code></pre>
-
 <p>Note that these schemas cannot actually be used. For one thing, they
 are infinitely recursive. For another, all relationships are lazily
 loaded. Attempting to serialize <em>any</em> linked object with them will
@@ -115,152 +107,138 @@ all his likes. But you probably wouldn&#39;t want to show all subfields of
 each image and like. Let&#39;s say that you want to show just all the urls
 from the user&#39;s own images, and all the urls from the images that user
 has liked. Or, to put it another way:</p>
-
-<pre><code class="python">class ImageForUserDetailSchema(ImageSchema):
+<pre class="high"><code class="python">class ImageForUserDetailSchema(ImageSchema):
     class Meta:
-        fields = [&#39;id&#39;, &#39;url&#39;]
+        fields = ['id', 'url']
 
 class LikeForUserDetailSchema(LikeSchema):
     image = Nested(ImageForUserDetailSchema)
 
     class Meta:
-        fields = [&#39;id&#39;, &#39;image&#39;]
+        fields = ['id', 'image']
 
 class UserDetailSchema(UserSchema):
     images = List(Nested(ImageForUserDetailSchema))
     likes = List(Nested(LikeForUserDetailSchema))
 </code></pre>
-
 <p>Now, if you&#39;re crazy like we are at <a href="//distribute.com">Distribute</a>,
 and you&#39;re planning to generating typescript interface definitions and
 backend method calls from <a href="//swagger.io">swagger</a>, you&#39;ll want
 to verify that you can get correct swagger output from 
 <a href="https://github.com/marshmallow-code/apispec">apispec</a>.</p>
-
-<pre><code class="python">spec = APISpec(
-    title=&#39;detail&#39;,
-    version=&#39;0.0.0&#39;,
+<pre class="high"><code class="python">spec = APISpec(
+    title='detail',
+    version='0.0.0',
     plugins=[
-        &#39;apispec.ext.marshmallow&#39;,
+        'apispec.ext.marshmallow',
     ],
 )
-spec.definition(&#39;UserDetail&#39;, schema=UserDetailSchema)
-spec.definition(&#39;ImageForUserDetail&#39;, schema=ImageForUserDetailSchema)
-spec.definition(&#39;LikeForUserDetail&#39;, schema=LikeForUserDetailSchema)
+spec.definition('UserDetail', schema=UserDetailSchema)
+spec.definition('ImageForUserDetail', schema=ImageForUserDetailSchema)
+spec.definition('LikeForUserDetail', schema=LikeForUserDetailSchema)
 
 </code></pre>
-
 <p>which yields the definitions</p>
-
-<pre><code class="json">
+<pre class="high"><code class="json">
 {
-    &quot;ImageForUserDetail&quot;: {
-        &quot;properties&quot;: {
-            &quot;id&quot;: {
-                &quot;format&quot;: &quot;int32&quot;,
-                &quot;type&quot;: &quot;integer&quot;
+    "ImageForUserDetail": {
+        "properties": {
+            "id": {
+                "format": "int32",
+                "type": "integer"
             },
-            &quot;url&quot;: {
-                &quot;maxLength&quot;: 100,
-                &quot;type&quot;: &quot;string&quot;,
-                &quot;x-nullable&quot;: true
+            "url": {
+                "maxLength": 100,
+                "type": "string",
+                "x-nullable": true
             }
         },
-        &quot;type&quot;: &quot;object&quot;
+        "type": "object"
     },
-    &quot;LikeForUserDetail&quot;: {
-        &quot;properties&quot;: {
-            &quot;id&quot;: {
-                &quot;format&quot;: &quot;int32&quot;,
-                &quot;type&quot;: &quot;integer&quot;
+    "LikeForUserDetail": {
+        "properties": {
+            "id": {
+                "format": "int32",
+                "type": "integer"
             },
-            &quot;image&quot;: {
-                &quot;$ref&quot;: &quot;#/definitions/ImageForUserDetail&quot;
+            "image": {
+                "$ref": "#/definitions/ImageForUserDetail"
             }
         },
-        &quot;type&quot;: &quot;object&quot;
+        "type": "object"
     },
-    &quot;UserDetail&quot;: {
-        &quot;properties&quot;: {
-            &quot;email&quot;: {
-                &quot;maxLength&quot;: 100,
-                &quot;type&quot;: &quot;string&quot;,
-                &quot;x-nullable&quot;: true
+    "UserDetail": {
+        "properties": {
+            "email": {
+                "maxLength": 100,
+                "type": "string",
+                "x-nullable": true
             },
-            &quot;first_name&quot;: {
-                &quot;maxLength&quot;: 100,
-                &quot;type&quot;: &quot;string&quot;,
-                &quot;x-nullable&quot;: true
+            "first_name": {
+                "maxLength": 100,
+                "type": "string",
+                "x-nullable": true
             },
-            &quot;id&quot;: {
-                &quot;format&quot;: &quot;int32&quot;,
-                &quot;type&quot;: &quot;integer&quot;
+            "id": {
+                "format": "int32",
+                "type": "integer"
             },
-            &quot;images&quot;: {
-                &quot;items&quot;: {
-                    &quot;$ref&quot;: &quot;#/definitions/ImageForUserDetail&quot;
+            "images": {
+                "items": {
+                    "$ref": "#/definitions/ImageForUserDetail"
                 },
-                &quot;type&quot;: &quot;array&quot;
+                "type": "array"
             },
-            &quot;last_name&quot;: {
-                &quot;maxLength&quot;: 100,
-                &quot;type&quot;: &quot;string&quot;,
-                &quot;x-nullable&quot;: true
+            "last_name": {
+                "maxLength": 100,
+                "type": "string",
+                "x-nullable": true
             },
-            &quot;likes&quot;: {
-                &quot;items&quot;: {
-                    &quot;$ref&quot;: &quot;#/definitions/LikeForUserDetail&quot;
+            "likes": {
+                "items": {
+                    "$ref": "#/definitions/LikeForUserDetail"
                 },
-                &quot;type&quot;: &quot;array&quot;
+                "type": "array"
             }
         },
-        &quot;type&quot;: &quot;object&quot;
+        "type": "object"
     }
 }
 
 </code></pre>
-
 <p>Looks fine.</p>
 
 <p>Now let&#39;s fetch and serialize a user according to the
 <code class="inline-code">UserDetailSchema</code>, first naively</p>
-
-<pre><code class="python">qry = session.query(User).filter(User.id==uid)
+<pre class="high"><code class="python">qry = session.query(User).filter(User.id==uid)
 data = qry.first()
 out = OutUserDetailSchema().dump(data).data
 </code></pre>
-
 <p>With a running total query counter, we see</p>
-
-<pre><code>begin example: user detail
+<pre><code class="hljs">begin example: user detail
 fetching user detail data
 queries: 1
 serializing user detail data
 queries: 4
 </code></pre>
-
 <p>To clarify, that means a total of 4 queries: 1 for the original fetch,
 and 3 during serialization. You can see the same basic thing in the
 <a href="https://github.com/marshmallow-code/marshmallow-select/blob/master/tests/test_marshmallow_select.py#L252">test</a>.</p>
 
 <p>Now we filter first</p>
-
-<pre><code class="python">qry = session.query(User).filter(User.id==uid)
+<pre class="high"><code class="python">qry = session.query(User).filter(User.id==uid)
 sf = SchemaFilter(UserDetailSchema(), unlazify=True)
 qry = sf(qry)
 data = qry.first()
 out = OutUserDetailSchema().dump(data).data
 </code></pre>
-
 <p>which yields</p>
-
-<pre><code>begin example: user detail
+<pre><code class="hljs">begin example: user detail
 fetching user detail data
 queries: 1
 serializing user detail data
 queries: 1
 </code></pre>
-
 <p>In other words, all data necessary to produce the message defined by
 the schema was retrieved in the initial query.</p>
 
@@ -268,54 +246,44 @@ the schema was retrieved in the initial query.</p>
 
 <p>You&#39;d probably also have some kind of user-list view which shows just
 the user&#39;s name and an image. For this, we extend the image model to</p>
-
-<pre><code class="python">class Image(Base):
+<pre class="high"><code class="python">class Image(Base):
     url = Column(String(100))
-    user_id = Column(Integer, ForeignKey(&#39;user.id&#39;))
+    user_id = Column(Integer, ForeignKey('user.id'))
     is_default = Column(Boolean, default=False)
 </code></pre>
-
 <p>and define an additional relationship</p>
-
-<pre><code class="python">class User(Base):
+<pre class="high"><code class="python">class User(Base):
     ...
     default_image = relationship(
-        &#39;Image&#39;,
+        'Image',
         uselist=False,
         primaryjoin=(
-            &quot;and_(User.id==Image.user_id, &quot;
-            &quot;Image.is_default==True)&quot;
+            "and_(User.id==Image.user_id, "
+            "Image.is_default==True)"
         )
     )
 </code></pre>
-
 <p>Our schemas are<sup id="fnref4"><a href="#fn4" rel="footnote">4</a></sup></p>
-
-<pre><code class="python">class ImageForUserListEltSchema(schemas.ImageSchema):
+<pre class="high"><code class="python">class ImageForUserListEltSchema(schemas.ImageSchema):
     class Meta:
-        fields = [&#39;id&#39;, &#39;url&#39;]
+        fields = ['id', 'url']
 
 
 class UserListEltSchema(schemas.UserSchema):
     default_image = Nested(ImageForUserListEltSchema)
 
     class Meta:
-        fields = [&#39;id&#39;, &#39;first_name&#39;, &#39;default_image&#39;]
+        fields = ['id', 'first_name', 'default_image']
 </code></pre>
-
 <p>Once again, with 2 users in our db, we generate 3 queries unfiltered,
 and 1 query when <code class="inline-code">SchemaFilter</code>ing on <code class="inline-code">UserListEltSchema</code>. Moreover,
 If we subsequently execute</p>
-
-<pre><code class="python">session.query(models.Image).get(0).id
+<pre class="high"><code class="python">session.query(models.Image).get(0).id
 session.query(models.Image).get(1).id
 </code></pre>
-
 <p>No additional queries are produced. But then if we continue with</p>
-
-<pre><code class="python">session.query(models.Image).get(2).id
+<pre class="high"><code class="python">session.query(models.Image).get(2).id
 </code></pre>
-
 <p>a query <em>is</em> produced, because we fetched only those images which were
 linked to a user we were fetching via the <code class="inline-code">default_image</code>
 relationship.</p>

@@ -25,8 +25,7 @@
 unfortunately short on examples of what could be done with it. Let's fix that.&lt;/p&gt;
 
 &lt;p&gt;Consider a server application with a minimal user model (ommitting pks &amp;amp; relationships)&lt;/p&gt;
-
-&lt;pre&gt;&lt;code class="python"&gt;class User...&lt;/code&gt;&lt;/pre&gt;</summary>
+&lt;pre class="high"&gt;&lt;code class="python"&gt;class User...&lt;/code&gt;&lt;/pre&gt;</summary>
   </entry>
   <entry>
     <title>Moving To Arch Linux: Humanity is Overrated</title>

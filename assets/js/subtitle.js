@@ -16,7 +16,6 @@ const subtitle_options = [
 
 const alt_options = [
     'cat /dev/random | xxd > blogpost.html',
-    // 'cat blogpost.html > /dev/null',
     'pokemon goroutines',
     'git -r done',
     'downward-funarg syndrome',
@@ -24,6 +23,5 @@ const alt_options = [
 
 document.addEventListener("turbolinks:load", function() {
     var new_subtitle = _.sample(subtitle_options);
-    // var new_subtitle = _.sample(alt_options);
     $('#subtitle').text(new_subtitle);
 });

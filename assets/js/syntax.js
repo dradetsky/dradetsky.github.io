@@ -1,8 +1,8 @@
 import hljs from 'highlight.js/lib/highlight';
 let langs = [
-    'scheme',
     'python',
     'ruby',
+    'json',
 ];
 langs.forEach((name) => {
     const lang_mod = require(`highlight.js/lib/languages/${name}`);
@@ -11,7 +11,8 @@ langs.forEach((name) => {
 
 import $ from 'jquery';
 document.addEventListener("turbolinks:load", function() {
-  $('pre code').each(function(i, block) {
-    hljs.highlightBlock(block);
-  });
+    // $('pre.high code').each(function(i, block) {
+    $('pre code').each(function(i, block) {
+        hljs.highlightBlock(block);
+    });
 });

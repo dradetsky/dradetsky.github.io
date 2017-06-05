@@ -8,6 +8,7 @@ Error: File to import not found or unreadable: node_modules/highlight.js/styles/
 19: // xt256
 20: 
 21: @import "node_modules/highlight.js/styles/monokai-sublime";
+22: // @import "rainbow/monokai";
 
 Backtrace:
 /home/dmr/code/task/blog/dmrblog/source/assets/style/syntax.scss:21
@@ -127,4 +128,4 @@ Backtrace:
 body:before {
   white-space: pre;
   font-family: monospace;
-  content: "Error: File to import not found or unreadable: node_modules/highlight.js/styles/monokai-sublime.\A         on line 21 of /home/dmr/code/task/blog/dmrblog/source/assets/style/syntax.scss\A \A 16: // monokai-sublime\A 17: // qtcreator_dark\A 18: // railscasts\A 19: // xt256\A 20: \A 21: @import \"node_modules/highlight.js/styles/monokai-sublime\";"; }
+  content: "Error: File to import not found or unreadable: node_modules/highlight.js/styles/monokai-sublime.\A         on line 21 of /home/dmr/code/task/blog/dmrblog/source/assets/style/syntax.scss\A \A 16: // monokai-sublime\A 17: // qtcreator_dark\A 18: // railscasts\A 19: // xt256\A 20: \A 21: @import \"node_modules/highlight.js/styles/monokai-sublime\";\A 22: // @import \"rainbow/monokai\";"; }

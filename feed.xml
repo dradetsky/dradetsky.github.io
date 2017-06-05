@@ -5,10 +5,29 @@
   <id>https://dradetsky.github.io</id>
   <link href="https://dradetsky.github.io"/>
   <link href="https://dradetsky.github.io/feed.xml" rel="self"/>
-  <updated>2017-05-29T17:00:00-07:00</updated>
+  <updated>2017-06-04T17:00:00-07:00</updated>
   <author>
     <name>dmr</name>
   </author>
+  <entry>
+    <title>Fun with marshmallow-select</title>
+    <link rel="alternate" href="https://dradetsky.github.io/fun-with-marsh-select.html"/>
+    <id>https://dradetsky.github.io/fun-with-marsh-select.html</id>
+    <published>2017-06-04T17:00:00-07:00</published>
+    <updated>2017-06-05T14:27:37-07:00</updated>
+    <author>
+      <name>dmr</name>
+    </author>
+    <summary type="html">&lt;h3&gt;The fun starts here&lt;/h3&gt;
+
+&lt;p&gt;My original announcement of
+&lt;a href="https://github.com/marshmallow-code/marshmallow-select"&gt;marshmallow-select&lt;/a&gt; was
+unfortunately short on examples of what could be done with it. Let's fix that.&lt;/p&gt;
+
+&lt;p&gt;Consider a server application with a minimal user model (ommitting pks &amp;amp; relationships)&lt;/p&gt;
+
+&lt;pre&gt;&lt;code class="python"&gt;class User...&lt;/code&gt;&lt;/pre&gt;</summary>
+  </entry>
   <entry>
     <title>Moving To Arch Linux: Humanity is Overrated</title>
     <link rel="alternate" href="https://dradetsky.github.io/moving-to-arch.html"/>

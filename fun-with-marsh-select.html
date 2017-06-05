@@ -264,12 +264,12 @@ the user&#39;s name and an image. For this, we extend the image model to</p>
     )
 </code></pre>
 <p>Our schemas are<sup id="fnref4"><a href="#fn4" rel="footnote">4</a></sup></p>
-<pre class="high"><code class="python">class ImageForUserListEltSchema(schemas.ImageSchema):
+<pre class="high"><code class="python">class ImageForUserListEltSchema(ImageSchema):
     class Meta:
         fields = ['id', 'url']
 
 
-class UserListEltSchema(schemas.UserSchema):
+class UserListEltSchema(UserSchema):
     default_image = Nested(ImageForUserListEltSchema)
 
     class Meta:
@@ -278,11 +278,11 @@ class UserListEltSchema(schemas.UserSchema):
 <p>Once again, with 2 users in our db, we generate 3 queries unfiltered,
 and 1 query when <code class="inline-code">SchemaFilter</code>ing on <code class="inline-code">UserListEltSchema</code>. Moreover,
 If we subsequently execute</p>
-<pre class="high"><code class="python">session.query(models.Image).get(0).id
-session.query(models.Image).get(1).id
+<pre class="high"><code class="python">session.query(Image).get(0).id
+session.query(Image).get(1).id
 </code></pre>
 <p>No additional queries are produced. But then if we continue with</p>
-<pre class="high"><code class="python">session.query(models.Image).get(2).id
+<pre class="high"><code class="python">session.query(Image).get(2).id
 </code></pre>
 <p>a query <em>is</em> produced, because we fetched only those images which were
 linked to a user we were fetching via the <code class="inline-code">default_image</code>
